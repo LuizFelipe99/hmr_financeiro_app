@@ -1,0 +1,26 @@
+<div class="sidebar">
+    <!-- topo -->
+    <div class="sidebar-top">
+        <div class="logo-area">
+            <img src="assets/logo.png" alt="Logo" class="logo">
+        </div>
+        <!-- menu -->
+        <nav class="menu">
+            @for(item of menuItems; track item.route){
+            <a [routerLink]="item.route" routerLinkActive="active" class="menu-item">
+                <mat-icon class="menu-icon"> {{ item.icon }} </mat-icon>
+                <span class="menu-label"> {{ item.label }} </span>
+            </a>
+            }
+        </nav>
+    </div>
+    <!-- rodapé -->
+    <div class="sidebar-footer">
+        <button class="logout-button" (click)="logout()">
+
+            <mat-icon> logout
+            </mat-icon>
+        </button>
+    </div>
+
+</div>

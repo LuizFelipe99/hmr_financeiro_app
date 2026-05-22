@@ -1,0 +1,54 @@
+<div class="widget-card">
+
+  <div class="widget-header">
+    <div>
+      <h2>Resumo por Parceiro</h2>
+      <p>Consolidado financeiro por parceiros</p>
+    </div>
+  </div>
+
+  <div
+    class="loading-container"
+    *ngIf="isLoading"
+  >
+    Carregando...
+  </div>
+
+  <div
+    class="partners-grid"
+    *ngIf="!isLoading"
+  >
+
+    <div
+      class="partner-item"
+      *ngFor="let item of partners"
+    >
+
+      <div class="partner-name">
+        {{ item.parceiro }}
+      </div>
+
+      <div class="partner-metrics">
+
+        <div class="metric positive">
+          <span>Receb.</span>
+          <strong>{{ toCurrency(item.recebimentos) }}</strong>
+        </div>
+
+        <div class="metric negative">
+          <span>Pag.</span>
+          <strong>{{ toCurrency(item.pagamentos) }}</strong>
+        </div>
+
+        <div class="metric liquido">
+          <span>Líquido</span>
+          <strong>{{ toCurrency(item.liquido) }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

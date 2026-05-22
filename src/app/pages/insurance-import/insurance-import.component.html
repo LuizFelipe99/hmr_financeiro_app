@@ -1,0 +1,90 @@
+<div class="container">
+
+  <h1>Importação de Seguradoras</h1>
+
+  <p class="subtitle">
+    Faça upload do arquivo CSV e informe um identificador
+    para rastrear a importação.
+  </p>
+
+  <div class="form-section">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Identificador do CSV</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="identifier"
+        placeholder="Ex: csv_11_05_2026"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="fileInput.click()"
+      [disabled]="isUploading"
+    >
+      Selecionar arquivo CSV
+    </button>
+
+    <input
+      #fileInput
+      type="file"
+      accept=".csv"
+      hidden
+      (change)="onFileSelected($event)"
+    />
+
+  </div>
+
+  <mat-progress-bar
+    *ngIf="isUploading"
+    mode="indeterminate">
+  </mat-progress-bar>
+
+  <div
+    class="result-card"
+    *ngIf="importResult"
+  >
+
+    <div class="result-card-title">
+      Resultado da importação
+    </div>
+
+    <div class="result-grid">
+
+      <div class="result-item">
+        <span>Status</span>
+        <strong class="status-success">
+          {{ importResult.status }}
+        </strong>
+      </div>
+
+      <div class="result-item">
+        <span>Identifier</span>
+        <strong>
+          {{ importResult.identifier }}
+        </strong>
+      </div>
+
+      <div class="result-item">
+        <span>Total de linhas</span>
+        <strong>
+          {{ importResult.total_rows }}
+        </strong>
+      </div>
+
+      <div class="result-item">
+        <span>Mensagem</span>
+        <strong>
+          {{ importResult.message }}
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<app-insurance-import-list></app-insurance-import-list>

@@ -1,0 +1,80 @@
+<div class="widget-card">
+
+  <div class="widget-header">
+
+    <div>
+
+      <h2>Resumo por Seguradora</h2>
+
+      <p>
+        Consolidado financeiro agrupado por seguradora
+      </p>
+
+    </div>
+
+    <div class="header-total">
+
+      <span>Total Líquido</span>
+
+      <strong class="liquido">
+        {{ toCurrency(getTotalLiquido().toString()) }}
+      </strong>
+
+    </div>
+
+  </div>
+
+  <div
+    class="loading-container"
+    *ngIf="isLoading"
+  >
+    Carregando...
+  </div>
+
+  <div
+    class="table-container"
+    *ngIf="!isLoading"
+  >
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Seguradora</th>
+          <th>Recebimentos</th>
+          <th>Pagamentos</th>
+          <th>Líquido</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let item of insurances">
+
+          <td class="insurance-name">
+            {{ item.seguradora || item.insurance }}
+          </td>
+
+          <td class="positive">
+            {{ toCurrency(item.recebimentos) }}
+          </td>
+
+          <td class="negative">
+            {{ toCurrency(item.pagamentos) }}
+          </td>
+
+          <td class="liquido">
+            {{ toCurrency(item.liquido) }}
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

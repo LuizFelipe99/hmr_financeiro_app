@@ -1,0 +1,65 @@
+<div class="login-page">
+  <div class="background-overlay"></div> <!-- elementos decorativos -->
+  
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="chart chart-left">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="line"></div>
+  </div>
+  <div class="chart chart-right">
+    <div class="mini-line"></div>
+  </div> <!-- card login -->
+  <div class="login-card"> <img src="assets/logo.png" alt="Logo" class="logo">
+    <h1>Bem-vindo de volta</h1>
+    <p class="subtitle"> Acesse sua conta para continuar </p>
+<div class="form-group">
+
+  <label>E-mail</label>
+
+  <div class="input-wrapper">
+
+    <span class="input-icon">
+      👤
+    </span>
+
+    <input
+      type="email"
+      [(ngModel)]="email"
+      placeholder="seuemail@empresa.com"
+    >
+
+  </div>
+
+</div>
+
+<div class="form-group">
+
+  <label>Senha</label>
+
+  <div class="input-wrapper">
+
+    <span class="input-icon">
+      🔒
+    </span>
+
+    <input
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Digite sua senha"
+    >
+
+  </div>
+
+</div> @if(error){ <div class="error-message"> {{ error }} </div> } <div
+      class="actions"> 
+      <label class="remember"> <input type="checkbox">
+         <span>Lembrar de mim</span> 
+        </label> 
+      <a href="#"> Esqueci minha senha </a> </div> <button (click)="login()"> Entrar </button>
+  </div>
+</div>

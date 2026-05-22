@@ -1,0 +1,133 @@
+<div class="dashboard-container">
+
+  <div class="dashboard-header">
+
+    <div>
+      <h1>Dashboard Financeiro</h1>
+
+      <p>
+        Resumo financeiro da importação selecionada
+      </p>
+    </div>
+
+  </div>
+
+  <div class="filters-card">
+
+    <div class="filter-group">
+
+      <label>Data início</label>
+
+      <input
+        type="date"
+        [(ngModel)]="dataInicio"
+      />
+
+    </div>
+
+    <div class="filter-group">
+
+      <label>Data fim</label>
+
+      <input
+        type="date"
+        [(ngModel)]="dataFim"
+      />
+
+    </div>
+
+    <button
+      (click)="loadDashboard()"
+    >
+      Atualizar Dashboard
+    </button>
+
+  </div>
+
+  <!-- KPIs -->
+  <!-- <div class="kpi-grid">
+
+    <div class="kpi-card">
+
+      <span>Recebimentos</span>
+
+      <strong>
+        {{ totalRecebimentos | currency:'BRL' }}
+      </strong>
+
+    </div>
+
+    <div class="kpi-card">
+
+      <span>Pagamentos</span>
+
+      <strong>
+        {{ totalPagamentos | currency:'BRL' }}
+      </strong>
+
+    </div>
+
+    <div class="kpi-card">
+
+      <span>Líquido</span>
+
+      <strong>
+        {{ totalLiquido | currency:'BRL' }}
+      </strong>
+
+    </div>
+
+    <div class="kpi-card">
+
+      <span>Registros</span>
+
+      <strong>
+        {{ totalRegistros }}
+      </strong>
+
+    </div>
+
+  </div> -->
+
+  <!-- widgets -->
+  <div class="widgets-grid">
+
+    <app-origin-summary
+        [importId]="importId"
+        [dataInicio]="dataInicio"
+        [dataFim]="dataFim">
+    </app-origin-summary>
+
+    <app-insurance-summary
+        [importId]="importId"
+        [dataInicio]="dataInicio"
+        [dataFim]="dataFim">
+    </app-insurance-summary>
+
+    <app-producer-summary
+        [importId]="importId"
+        [dataInicio]="dataInicio"
+        [dataFim]="dataFim">
+    </app-producer-summary>
+
+    <app-ramo-summary
+        [importId]="importId"
+        [dataInicio]="dataInicio"
+        [dataFim]="dataFim">
+    </app-ramo-summary>
+
+    <app-summary-by-date
+        [importId]="importId"
+        [dataInicio]="dataInicio"
+        [dataFim]="dataFim">
+    </app-summary-by-date>
+
+    <app-partner-summary
+        [importId]="importId">  
+    </app-partner-summary>
+    <!-- depois -->
+    <!-- partner -->
+
+  </div>
+
+</div>

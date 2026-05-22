@@ -1,0 +1,18 @@
+<div class="app-layout">
+
+  @if(router.url !== '/login'){
+
+    <app-sidebar></app-sidebar>
+
+  }
+
+  <main
+    class="content"
+    [class.full-width]="router.url === '/login'"
+  >
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

@@ -1,0 +1,119 @@
+.widget-card {
+  padding: 24px;
+
+  background: white;
+
+  border-radius: 20px;
+
+  border: 1px solid #e2e8f0;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+.widget-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #0f172a;
+}
+
+.widget-header p {
+  margin-top: 6px;
+
+  color: #64748b;
+}
+
+.header-total {
+  text-align: right;
+}
+
+.header-total span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 13px;
+  color: #64748b;
+}
+
+.header-total strong {
+  font-size: 26px;
+  color: #16a34a;
+}
+
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 360px;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 16px;
+
+  text-align: left;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #475569;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+  padding: 18px 16px;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  color: #0f172a;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.insurance-name {
+  font-weight: 600;
+}
+
+.positive {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.negative {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.liquido {
+  font-weight: 700;
+  color: #154dd3 !important;
+}
+
+
+.loading-container {
+  padding: 40px 0;
+
+  text-align: center;
+
+  color: #64748b;
+}

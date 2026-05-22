@@ -1,0 +1,54 @@
+<div class="widget-card">
+
+  <div class="widget-header">
+    <div>
+      <h2>Resumo por Ramo</h2>
+      <p>Performance financeira por ramo</p>
+    </div>
+  </div>
+
+  <div
+    class="loading-container"
+    *ngIf="isLoading"
+  >
+    Carregando...
+  </div>
+
+  <div
+    class="ramos-grid"
+    *ngIf="!isLoading"
+  >
+
+    <div
+      class="ramo-item"
+      *ngFor="let item of ramos"
+    >
+
+      <div class="ramo-name">
+        {{ item.ramo }}
+      </div>
+
+      <div class="ramo-metrics">
+
+        <div class="metric positive">
+          <span>Recebimentos</span>
+          <strong>{{ toCurrency(item.recebimentos) }}</strong>
+        </div>
+
+        <div class="metric negative">
+          <span>Pagamentos</span>
+          <strong>{{ toCurrency(item.pagamentos) }}</strong>
+        </div>
+
+        <div class="metric liquido">
+          <span>Líquido</span>
+          <strong>{{ toCurrency(item.liquido) }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
