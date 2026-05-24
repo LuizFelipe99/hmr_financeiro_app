@@ -1,0 +1,161 @@
+.customers-wrapper {
+  padding: 24px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  border: 1px solid #e2e8f0;
+}
+
+.customers-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 24px;
+
+  gap: 20px;
+}
+
+.customers-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #0f172a;
+}
+
+.customers-header p {
+  margin-top: 6px;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.header-kpi {
+  text-align: right;
+}
+
+.header-kpi span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 12px;
+
+  color: #64748b;
+}
+
+.header-kpi strong {
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #16a34a;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 16px !important;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  color: #64748b;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+  padding: 18px 16px !important;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  color: #0f172a;
+}
+
+tr:hover td {
+  background: #f8fafc;
+}
+
+.customer-info strong {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #0f172a;
+}
+
+.insurance-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.positive-value {
+  color: #16a34a;
+
+  font-weight: 700;
+}
+
+.loading-container {
+  display: flex;
+
+  justify-content: center;
+
+  padding: 40px 0;
+}
+
+.table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.negative-value {
+  color: #dc2626;
+
+  font-weight: 700;
+}

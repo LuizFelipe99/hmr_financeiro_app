@@ -9,6 +9,7 @@ import { ProducerSummaryComponent } from '../../components/widgets/producer-summ
 import { RamoSummaryComponent } from '../../components/widgets/ramo-summary/ramo-summary.component';
 import { SummaryByDateComponent } from '../../components/widgets/summary-by-date/summary-by-date.component';
 import { PartnerSummaryComponent } from '../../components/widgets/partner-summary/partner-summary.component';
+import { NewCustomersSummaryComponent } from '../../components/widgets/new-customers-summary/new-customers-summary.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,8 +22,10 @@ import { PartnerSummaryComponent } from '../../components/widgets/partner-summar
     ProducerSummaryComponent,
     RamoSummaryComponent,
     SummaryByDateComponent,
-    PartnerSummaryComponent
-  ],
+    PartnerSummaryComponent,
+    NewCustomersSummaryComponent,
+    NewCustomersSummaryComponent
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
