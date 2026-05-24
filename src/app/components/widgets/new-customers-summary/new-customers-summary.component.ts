@@ -5,13 +5,28 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
-import {
-  MatProgressSpinnerModule
-} from '@angular/material/progress-spinner';
+interface GroupSummary {
+  nome: string | null;
+  total_clientes: number;
+  valor_total: string;
+}
+
+interface NewCustomersSummaryResponse {
+  group_by: string;
+  total_geral: number;
+  total_clientes: number;
+  dados: GroupSummary[];
+}
+
+type GroupByOption = 'seguradora' | 'origem' | 'produtor' | 'ramo' | 'parceiro';
 
 @Component({
   selector: 'app-new-customers-summary',
@@ -19,7 +34,10 @@ import {
   imports: [
     CommonModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   templateUrl: './new-customers-summary.component.html',
   styleUrl: './new-customers-summary.component.css'
@@ -28,67 +46,60 @@ export class NewCustomersSummaryComponent implements OnChanges {
 
   @Input() importId!: number;
 
-  protected customers: any[] = [];
-
+  protected groups: GroupSummary[] = [];
   protected totalGeral = 0;
-
   protected isLoading = false;
+  protected selectedGroupBy: GroupByOption = 'seguradora';
 
-  protected displayedColumns = [
-    'descricao',
-    'seguradora',
-    'parcela',
-    'valor_recebido'
+  protected readonly groupByOptions: { value: GroupByOption; label: string }[] = [
+    { value: 'seguradora', label: 'Seguradora' },
+    { value: 'origem',     label: 'Origem'     },
+    { value: 'produtor',   label: 'Produtor'   },
+    { value: 'ramo',       label: 'Ramo'       },
+    { value: 'parceiro',   label: 'Parceiro'   }
   ];
 
-  protected isNegative(value: string | number): boolean {
+  protected readonly groupColumns = ['nome', 'total_clientes', 'valor_total'];
 
-  return Number(value) < 0;
-}
-  constructor(
-    private readonly http: HttpClient
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   ngOnChanges(): void {
+    if (!this.importId) return;
+    this.loadData();
+  }
 
-    if (this.importId) {
-      this.loadData();
-    }
+  protected onGroupByChange(): void {
+    this.loadData();
   }
 
   private loadData(): void {
-
     this.isLoading = true;
 
-    this.http.get<any>(
-      `http://localhost:8000/api/new-customers-summary/${this.importId}`
-    )
-    .subscribe({
+    const params = new HttpParams().set('group_by', this.selectedGroupBy);
 
+    this.http.get<NewCustomersSummaryResponse>(
+      `http://localhost:8000/api/new-customers-summary/${this.importId}`,
+      { params }
+    ).subscribe({
       next: (response) => {
-
-        this.customers = response.clientes || [];
-
-        this.totalGeral = Number(response.total_geral || 0);
-
+        this.groups = response.dados ?? [];
+        this.totalGeral = response.total_geral ?? 0;
         this.isLoading = false;
       },
-
       error: () => {
-
         this.isLoading = false;
       }
     });
   }
 
-  protected toCurrency(value: string | number): string {
+  protected isNegative(value: string | number): boolean {
+    return Number(value) < 0;
+  }
 
-    return Number(value).toLocaleString(
-      'pt-BR',
-      {
-        style: 'currency',
-        currency: 'BRL'
-      }
-    );
+  protected toCurrency(value: string | number): string {
+    return Number(value).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
   }
 }
