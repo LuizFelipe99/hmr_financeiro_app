@@ -44,7 +44,7 @@ export class LoginComponent {
 
     this.authService.login(data).subscribe({
       next: () => {
-        this.router.navigate(['/import-csv']);
+        this.router.navigate(['/insurance-import']);
       },
       error: () => {
         this.error = 'Email ou senha inválidos';

@@ -17,22 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
 export class SidebarComponent {
 
   protected menuItems = [
-
-    {
-      label: 'Importar Usuários',
-      icon: 'upload_file',
-      route: '/import-csv'
-    },
     {
       label: 'Importar Seguradoras',
       icon: 'dataset',
       route: '/insurance-import'
     },
-        {
-      label: 'Teste',
-      icon: 'dataset',
-      route: '/dashboard/17'
-    }
 
   ];
 
