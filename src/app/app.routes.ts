@@ -4,6 +4,7 @@ import { CsvUploadComponent } from './components/csv-upload/csv-upload.component
 import { LoginComponent } from './components/login/login.component';
 import { InsuranceImportComponent } from './pages/insurance-import/insurance-import.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
@@ -22,6 +23,7 @@ export const routes: Routes = [
     canActivate: [guestGuard]
   },
 
+
   {
     path: 'import-csv',
     component: CsvUploadComponent,
@@ -38,10 +40,17 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuard]
   },
+  {
+    path: 'faq',
+    component: FaqComponent,
+    canActivate: [authGuard]
+  },
 
   {
     path: '**',
     redirectTo: 'login'
-  }
+  },
+
+
 
 ];

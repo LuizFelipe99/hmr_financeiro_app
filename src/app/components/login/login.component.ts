@@ -44,7 +44,7 @@ export class LoginComponent {
 
     this.authService.login(data).subscribe({
       next: () => {
-        this.router.navigate(['/insurance-import']);
+        this.router.navigate(['/faq']);
       },
       error: () => {
         this.error = 'Email ou senha inválidos';
@@ -52,3 +52,4 @@ export class LoginComponent {
     });
   }
 }
+

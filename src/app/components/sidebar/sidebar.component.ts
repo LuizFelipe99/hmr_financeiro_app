@@ -18,6 +18,11 @@ export class SidebarComponent {
 
   protected menuItems = [
     {
+      label: 'Home',
+      icon: 'home',
+      route: '/faq'
+    },
+    {
       label: 'Importar Seguradoras',
       icon: 'dataset',
       route: '/insurance-import'
