@@ -44,8 +44,34 @@
 
 .partners-grid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+
+  max-height: 720px;
+  overflow-y: auto;
+
+  padding-right: 6px;
+}
+
+/* Scroll bonito */
+
+.partners-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.partners-grid::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 999px;
+}
+
+.partners-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.partners-grid::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .partner-item {
