@@ -1,27 +1,38 @@
 <div class="sidebar">
-    <!-- topo -->
-    <div class="sidebar-top">
-        <div class="logo-area">
-            <img src="assets/logo.png" alt="Logo" class="logo">
-        </div>
-        <!-- menu -->
-        <nav class="menu">
-            @for(item of menuItems; track item.route){
-            <a [routerLink]="item.route" routerLinkActive="active" class="menu-item">
-                <mat-icon class="menu-icon"> {{ item.icon }} </mat-icon>
-                <span class="menu-label"> {{ item.label }} </span>
-            </a>
-            }
-        </nav>
-    </div>
-    <!-- rodapé -->
-    <div class="sidebar-footer">
-        <button class="logout-button" (click)="logout()">
 
-            <mat-icon> logout
-            </mat-icon>
-            Sair
-        </button>
+  <div class="sidebar-top">
+
+    <div class="logo-area">
+      <img src="assets/logo.png" alt="Logo" class="logo">
     </div>
+
+    <div class="user-area">
+      <div class="user-avatar">
+        {{ currentUser?.name?.charAt(0) ?? '?' }}
+      </div>
+      <div class="user-info">
+        <span class="user-name">{{ currentUser?.name ?? '—' }}</span>
+        <span class="user-role">{{ currentUser?.role ?? '' }}</span>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <span class="menu-section-label">Menu</span>
+      @for(item of menuItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="menu-item">
+          <mat-icon class="menu-icon">{{ item.icon }}</mat-icon>
+          <span class="menu-label">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+  </div>
+
+  <div class="sidebar-footer">
+    <button class="logout-button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Sair
+    </button>
+  </div>
 
 </div>
