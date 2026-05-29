@@ -31,17 +31,18 @@
       *ngFor="let item of partners"
     >
 
-      <div class="partner-header">
+    <div class="partner-header">
 
-        <div class="partner-name">
-          {{ item.parceiro }}
-        </div>
-
-        <div class="partner-records">
-          {{ item.total_registros }} registros
-        </div>
-
+      <div class="partner-name">
+        {{ item.produtor }}
       </div>
+
+      <div class="partner-badge">
+        {{ item.total_registros }}
+        registros
+      </div>
+
+    </div>
 
       <div class="partner-metrics">
 

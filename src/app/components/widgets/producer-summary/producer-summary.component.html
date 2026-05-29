@@ -41,9 +41,18 @@
       *ngFor="let item of producers"
     >
 
+    <div class="producer-header">
+
       <div class="producer-name">
         {{ item.produtor }}
       </div>
+
+      <div class="producer-badge">
+        {{ item.total_registros }}
+        registros
+      </div>
+
+    </div>
 
       <div class="producer-metrics">
 

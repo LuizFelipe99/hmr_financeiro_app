@@ -7,6 +7,10 @@
 
 .widget-header {
   margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .widget-header h2 {
@@ -22,12 +26,27 @@
   font-size: 14px;
 }
 
+.header-total {
+  text-align: right;
+}
+
+.header-total span {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.header-total strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
 .ramos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
-
 
 .ramo-item {
   padding: 16px 18px;
@@ -43,11 +62,40 @@
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
+.ramo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 16px;
+}
+
 .ramo-name {
-  margin-bottom: 14px;
   font-size: 16px;
   font-weight: 700;
   color: #0f172a;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  flex: 1;
+}
+
+.ramo-badge {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  margin-left: 10px;
 }
 
 .ramo-metrics {
@@ -95,10 +143,35 @@
   color: #64748b;
 }
 
-.registros {
-  color: #475569;
+/* Responsividade */
+
+@media (max-width: 1200px) {
+  .ramos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.registros strong {
-  color: #0f172a;
+@media (max-width: 768px) {
+  .ramos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widget-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-total {
+    text-align: left;
+  }
+
+  .ramo-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ramo-badge {
+    margin-left: 0;
+  }
 }

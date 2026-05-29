@@ -31,9 +31,18 @@
       *ngFor="let item of ramos"
     >
 
-      <div class="ramo-name">
-        {{ item.ramo }}
-      </div>
+<div class="ramo-header">
+
+  <div class="ramo-name">
+    {{ item.produtor }}
+  </div>
+
+  <div class="ramo-badge">
+    {{ item.total_registros }}
+    registros
+  </div>
+
+</div>
 
       <div class="ramo-metrics">
 

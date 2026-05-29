@@ -62,8 +62,15 @@
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
+.producer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 16px;
+}
+
 .producer-name {
-  margin-bottom: 14px;
   font-size: 16px;
   font-weight: 700;
   color: #0f172a;
@@ -71,6 +78,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  flex: 1;
+}
+
+.producer-badge {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  margin-left: 10px;
 }
 
 .producer-metrics {
@@ -138,5 +163,15 @@
 
   .header-total {
     text-align: left;
+  }
+
+  .producer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .producer-badge {
+    margin-left: 0;
   }
 }
