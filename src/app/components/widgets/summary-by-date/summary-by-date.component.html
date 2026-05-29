@@ -21,6 +21,43 @@
     Carregando gráfico...
   </div>
 
+  <div
+    class="totals-grid"
+    *ngIf="!isLoading && summaryData.length"
+  >
+
+    <div class="total-card">
+
+      <span>Recebimentos</span>
+
+      <strong class="positive">
+        {{ toCurrency(getTotalRecebimentos().toString()) }}
+      </strong>
+
+    </div>
+
+    <div class="total-card">
+
+      <span>Pagamentos</span>
+
+      <strong class="negative">
+        {{ toCurrency(getTotalPagamentos().toString()) }}
+      </strong>
+
+    </div>
+
+    <div class="total-card">
+
+      <span>Líquido</span>
+
+      <strong class="liquido">
+        {{ toCurrency(getTotalLiquido().toString()) }}
+      </strong>
+
+    </div>
+
+  </div>
+
   <apx-chart
     *ngIf="!isLoading"
     [series]="chartOptions.series!"
@@ -44,6 +81,7 @@
 
         <tr>
           <th>Data</th>
+          <th>Registros</th>
           <th>Recebimentos</th>
           <th>Pagamentos</th>
           <th>Líquido</th>
@@ -57,6 +95,10 @@
 
           <td>
             {{ formatDate(item.data) }}
+          </td>
+
+          <td>
+            {{ item.total_registros }}
           </td>
 
           <td class="positive">

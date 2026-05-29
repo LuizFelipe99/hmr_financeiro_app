@@ -20,7 +20,7 @@ export class InsuranceImportService {
     formData.append('identifier', identifier);
 
     return this.httpClient.post(
-      `${this.apiBaseUrl}/insurance/import`,
+      `${this.apiBaseUrl}/financial/import`,
       formData
     );
   }

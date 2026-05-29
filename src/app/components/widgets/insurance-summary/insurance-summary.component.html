@@ -4,10 +4,10 @@
 
     <div>
 
-      <h2>Resumo por Seguradora</h2>
+      <h2>Resumo por Fornecedor</h2>
 
       <p>
-        Consolidado financeiro agrupado por seguradora
+        Consolidado financeiro agrupado por fornecedor e cliente
       </p>
 
     </div>
@@ -16,8 +16,11 @@
 
       <span>Total Líquido</span>
 
-      <strong class="liquido">
-        {{ toCurrency(getTotalLiquido().toString()) }}
+      <strong
+        [class.positive]="totalLiquido >= 0"
+        [class.negative]="totalLiquido < 0"
+      >
+        {{ toCurrency(totalLiquido) }}
       </strong>
 
     </div>
@@ -41,7 +44,7 @@
       <thead>
 
         <tr>
-          <th>Seguradora</th>
+          <th>Fornecedor / Cliente</th>
           <th>Recebimentos</th>
           <th>Pagamentos</th>
           <th>Líquido</th>
@@ -54,19 +57,22 @@
         <tr *ngFor="let item of insurances">
 
           <td class="insurance-name">
-            {{ item.seguradora || item.insurance }}
+            {{ item.fornecedor_cliente || 'Não informado' }}
           </td>
 
           <td class="positive">
-            {{ toCurrency(item.recebimentos) }}
+            {{ toCurrency(item.total_recebimentos) }}
           </td>
 
           <td class="negative">
-            {{ toCurrency(item.pagamentos) }}
+            {{ toCurrency(item.total_pagamentos) }}
           </td>
 
-          <td class="liquido">
-            {{ toCurrency(item.liquido) }}
+          <td
+            [class.positive]="parseNumber(item.total_liquido) >= 0"
+            [class.negative]="parseNumber(item.total_liquido) < 0"
+          >
+            {{ toCurrency(item.total_liquido) }}
           </td>
 
         </tr>

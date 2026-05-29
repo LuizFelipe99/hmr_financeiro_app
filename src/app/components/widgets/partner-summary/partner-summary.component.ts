@@ -39,8 +39,25 @@ export class PartnerSummaryComponent implements OnChanges {
 
     this.isLoading = true;
 
-    this.http.get<any[]>(
-      `http://localhost:8000/api/partner-summary/${this.importId}`
+    const body = {
+
+      data_inicio: '2026-01-01',
+      data_fim: '2026-05-30',
+
+      categorias: [
+        'ESTORNO',
+        'Receitas de Serviços',
+        'REPASSES A PARCEIROS'
+      ],
+
+      situacoes: [
+        'Conciliado'
+      ]
+    };
+
+    this.http.post<any[]>(
+      `http://127.0.0.1:8000/api/financial/summary/insurance/partner/${this.importId}`,
+      body
     )
     .subscribe({
 

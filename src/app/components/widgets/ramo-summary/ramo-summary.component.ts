@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ramo-summary',
@@ -47,13 +47,26 @@ export class RamoSummaryComponent implements OnChanges {
 
     this.isLoading = true;
 
-    const params = new HttpParams()
-      .set('data_inicio', this.dataInicio)
-      .set('data_fim', this.dataFim);
+    const payload = {
 
-    this.http.get<any[]>(
-      `http://localhost:8000/api/ramo-summary/${this.importId}`,
-      { params }
+      data_inicio: this.dataInicio,
+
+      data_fim: this.dataFim,
+
+      categorias: [
+        'ESTORNO',
+        'Receitas de Serviços',
+        'REPASSES A PARCEIROS'
+      ],
+
+      situacoes: [
+        'Conciliado'
+      ]
+    };
+
+    this.http.post<any[]>(
+      `http://127.0.0.1:8000/api/financial/summary/insurance/ramo/${this.importId}`,
+      payload
     )
     .subscribe({
 
@@ -61,7 +74,8 @@ export class RamoSummaryComponent implements OnChanges {
 
         this.ramos = response.sort(
           (a, b) =>
-            Number(b.liquido) - Number(a.liquido)
+            Number(b.liquido) -
+            Number(a.liquido)
         );
 
         this.isLoading = false;
@@ -74,7 +88,9 @@ export class RamoSummaryComponent implements OnChanges {
     });
   }
 
-  protected toCurrency(value: string): string {
+  protected toCurrency(
+    value: string | number
+  ): string {
 
     return Number(value).toLocaleString(
       'pt-BR',

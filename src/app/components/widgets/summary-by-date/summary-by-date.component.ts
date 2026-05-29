@@ -17,7 +17,7 @@ import {
   ApexLegend
 } from 'ng-apexcharts';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -54,6 +54,7 @@ export class SummaryByDateComponent implements OnChanges {
   protected summaryData: any[] = [];
 
   public chartOptions: Partial<ChartOptions> = {
+
     series: [],
 
     chart: {
@@ -93,11 +94,7 @@ export class SummaryByDateComponent implements OnChanges {
 
   ngOnChanges(): void {
 
-    if (
-      this.importId &&
-      this.dataInicio &&
-      this.dataFim
-    ) {
+    if (this.importId) {
       this.loadData();
     }
   }
@@ -106,14 +103,24 @@ export class SummaryByDateComponent implements OnChanges {
 
     this.isLoading = true;
 
-    const params = new HttpParams()
-      .set('csv_import_id', this.importId)
-      .set('data_inicio', this.dataInicio)
-      .set('data_fim', this.dataFim);
+    const body = {
+      data_inicio: '2026-01-01',
+      data_fim: '2026-05-30',
 
-    this.http.get<any[]>(
-      `http://localhost:8000/api/summary-by-date`,
-      { params }
+      categorias: [
+        'ESTORNO',
+        'Receitas de Serviços',
+        'REPASSES A PARCEIROS'
+      ],
+
+      situacoes: [
+        'Conciliado'
+      ]
+    };
+
+    this.http.post<any[]>(
+      `http://127.0.0.1:8000/api/financial/summary/insurance/date-range/${this.importId}`,
+      body
     )
     .subscribe({
 
@@ -122,7 +129,7 @@ export class SummaryByDateComponent implements OnChanges {
         this.summaryData = response;
 
         const categories = response.map(
-          item => item.data
+          item => this.formatDate(item.data)
         );
 
         const recebimentos = response.map(
@@ -186,5 +193,29 @@ export class SummaryByDateComponent implements OnChanges {
 
     return new Date(date)
       .toLocaleDateString('pt-BR');
+  }
+
+  protected getTotalRecebimentos(): number {
+
+    return this.summaryData.reduce(
+      (acc, item) => acc + Number(item.recebimentos),
+      0
+    );
+  }
+
+  protected getTotalPagamentos(): number {
+
+    return this.summaryData.reduce(
+      (acc, item) => acc + Number(item.pagamentos),
+      0
+    );
+  }
+
+  protected getTotalLiquido(): number {
+
+    return this.summaryData.reduce(
+      (acc, item) => acc + Number(item.liquido),
+      0
+    );
   }
 }

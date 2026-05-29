@@ -31,15 +31,24 @@
       *ngFor="let item of origins"
     >
 
-      <div class="origin-name">
-        {{ item.origem }}
+      <div class="origin-header">
+
+        <div class="origin-name">
+          {{ item.origem }}
+        </div>
+
+        <div class="origin-badge">
+          {{ item.total_registros }}
+          registros
+        </div>
+
       </div>
 
       <div class="origin-metrics">
 
         <div class="metric positive">
 
-          <span>Receb.</span>
+          <span>Recebimentos</span>
 
           <strong>
             {{ toCurrency(item.recebimentos) }}
@@ -49,7 +58,7 @@
 
         <div class="metric negative">
 
-          <span>Pag.</span>
+          <span>Pagamentos</span>
 
           <strong>
             {{ toCurrency(item.pagamentos) }}

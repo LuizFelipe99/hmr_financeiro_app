@@ -1,66 +1,144 @@
 <div class="customers-wrapper">
 
   <div class="customers-header">
+
     <div>
+
       <h2>Novos Clientes</h2>
-      <p>Novas vendas identificadas na importação</p>
+
+      <p>
+        Novas vendas identificadas na importação
+      </p>
+
     </div>
+
     <div class="header-kpi">
+
       <span>Total Recebido</span>
-      <strong>{{ toCurrency(totalGeral) }}</strong>
+
+      <strong>
+        {{ toCurrency(totalGeral) }}
+      </strong>
+
+      <small>
+        {{ totalClientes }} clientes
+      </small>
+
     </div>
+
   </div>
 
-  <div class="customers-loading" *ngIf="isLoading">
+  <div
+    class="customers-loading"
+    *ngIf="isLoading"
+  >
     <mat-spinner diameter="40"></mat-spinner>
   </div>
 
   <ng-container *ngIf="!isLoading">
 
     <div class="filter-bar">
-      <mat-form-field appearance="outline" class="group-by-field">
-        <mat-label>Agrupar por</mat-label>
-        <mat-select [(ngModel)]="selectedGroupBy" (ngModelChange)="onGroupByChange()">
-          <mat-option *ngFor="let option of groupByOptions" [value]="option.value">
+
+      <mat-form-field
+        appearance="outline"
+        class="group-by-field"
+      >
+
+        <mat-label>
+          Agrupar por
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedGroupBy"
+          (ngModelChange)="onGroupByChange()"
+        >
+
+          <mat-option
+            *ngFor="let option of groupByOptions"
+            [value]="option.value"
+          >
             {{ option.label }}
           </mat-option>
+
         </mat-select>
+
       </mat-form-field>
+
     </div>
 
     <div class="table-container">
-      <table mat-table [dataSource]="groups">
+
+      <table
+        mat-table
+        [dataSource]="groups"
+      >
 
         <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef>{{ selectedGroupBy | titlecase }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ selectedGroupBy | titlecase }}
+          </th>
+
           <td mat-cell *matCellDef="let item">
-            <span class="group-badge" [class.group-badge--empty]="!item.nome">
-              {{ item.nome ?? 'Sem ' + (selectedGroupBy | titlecase) }}
+
+            <span
+              class="group-badge"
+              [class.group-badge--empty]="!item.nome"
+            >
+              {{ item.nome ?? 'Não informado' }}
             </span>
+
           </td>
+
         </ng-container>
 
         <ng-container matColumnDef="total_clientes">
-          <th mat-header-cell *matHeaderCellDef>Clientes</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            Clientes
+          </th>
+
           <td mat-cell *matCellDef="let item">
-            <span class="client-count-badge">{{ item.total_clientes }}</span>
+
+            <span class="client-count-badge">
+              {{ item.total_clientes }}
+            </span>
+
           </td>
+
         </ng-container>
 
         <ng-container matColumnDef="valor_total">
-          <th mat-header-cell *matHeaderCellDef>Valor Total</th>
-          <td mat-cell *matCellDef="let item" [ngClass]="{
-            'positive-value': !isNegative(item.valor_total),
-            'negative-value': isNegative(item.valor_total)
-          }">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Valor Total
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let item"
+            [ngClass]="{
+              'positive-value': !isNegative(item.valor_total),
+              'negative-value': isNegative(item.valor_total)
+            }"
+          >
             {{ toCurrency(item.valor_total) }}
           </td>
+
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="groupColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: groupColumns;"></tr>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="groupColumns">
+        </tr>
+
+        <tr
+          mat-row
+          *matRowDef="let row; columns: groupColumns;">
+        </tr>
 
       </table>
+
     </div>
 
   </ng-container>

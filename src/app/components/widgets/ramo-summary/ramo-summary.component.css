@@ -94,3 +94,11 @@
   text-align: center;
   color: #64748b;
 }
+
+.registros {
+  color: #475569;
+}
+
+.registros strong {
+  color: #0f172a;
+}

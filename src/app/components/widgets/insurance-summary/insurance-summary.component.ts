@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-insurance-summary',
@@ -25,6 +25,8 @@ export class InsuranceSummaryComponent implements OnChanges {
   @Input() dataFim!: string;
 
   protected insurances: any[] = [];
+
+  protected totalLiquido = 0;
 
   protected isLoading = false;
 
@@ -47,19 +49,16 @@ export class InsuranceSummaryComponent implements OnChanges {
 
     this.isLoading = true;
 
-    const params = new HttpParams()
-      .set('data_inicio', this.dataInicio)
-      .set('data_fim', this.dataFim);
-
-    this.http.get<any[]>(
-      `http://localhost:8000/api/insurance-summary/${this.importId}`,
-      { params }
+    this.http.get<any>(
+      `http://127.0.0.1:8000/api/financial/summary/insurance/supplier/${this.importId}`
     )
     .subscribe({
 
       next: (response) => {
 
-        this.insurances = response;
+        this.insurances = response.data;
+
+        this.totalLiquido = response.total_liquido;
 
         this.isLoading = false;
       },
@@ -71,7 +70,7 @@ export class InsuranceSummaryComponent implements OnChanges {
     });
   }
 
-  protected toCurrency(value: string): string {
+  protected toCurrency(value: string | number): string {
 
     return Number(value).toLocaleString(
       'pt-BR',
@@ -82,11 +81,8 @@ export class InsuranceSummaryComponent implements OnChanges {
     );
   }
 
-  protected getTotalLiquido(): number {
+  protected parseNumber(value: string): number {
 
-    return this.insurances.reduce(
-      (acc, item) => acc + Number(item.liquido),
-      0
-    );
+    return Number(value);
   }
 }

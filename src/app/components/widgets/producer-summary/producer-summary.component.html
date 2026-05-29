@@ -1,10 +1,27 @@
 <div class="widget-card">
 
   <div class="widget-header">
+
     <div>
+
       <h2>Resumo por Produtor</h2>
-      <p>Consolidado financeiro por produtores</p>
+
+      <p>
+        Consolidado financeiro por produtores
+      </p>
+
     </div>
+
+    <div class="header-total">
+
+      <span>Produtores</span>
+
+      <strong>
+        {{ totalRecords }}
+      </strong>
+
+    </div>
+
   </div>
 
   <div
@@ -31,18 +48,43 @@
       <div class="producer-metrics">
 
         <div class="metric positive">
+
           <span>Receb.</span>
-          <strong>{{ toCurrency(item.recebimentos) }}</strong>
+
+          <strong>
+            {{ toCurrency(item.recebimentos) }}
+          </strong>
+
         </div>
 
         <div class="metric negative">
+
           <span>Pag.</span>
-          <strong>{{ toCurrency(item.pagamentos) }}</strong>
+
+          <strong>
+            {{ toCurrency(item.pagamentos) }}
+          </strong>
+
         </div>
 
         <div class="metric liquido">
+
           <span>Líquido</span>
-          <strong>{{ toCurrency(item.liquido) }}</strong>
+
+          <strong>
+            {{ toCurrency(item.liquido) }}
+          </strong>
+
+        </div>
+
+        <div class="metric registros">
+
+          <span>Registros</span>
+
+          <strong>
+            {{ item.total_registros }}
+          </strong>
+
         </div>
 
       </div>

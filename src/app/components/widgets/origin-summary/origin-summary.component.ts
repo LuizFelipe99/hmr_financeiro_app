@@ -6,7 +6,15 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+interface OriginSummary {
+  origem: string;
+  total_registros: number;
+  recebimentos: string;
+  pagamentos: string;
+  liquido: string;
+}
 
 @Component({
   selector: 'app-origin-summary',
@@ -25,7 +33,7 @@ export class OriginSummaryComponent implements OnChanges {
 
   @Input() dataFim!: string;
 
-  protected origins: any[] = [];
+  protected origins: OriginSummary[] = [];
 
   protected isLoading = false;
 
@@ -48,13 +56,24 @@ export class OriginSummaryComponent implements OnChanges {
 
     this.isLoading = true;
 
-    const params = new HttpParams()
-      .set('data_inicio', this.dataInicio)
-      .set('data_fim', this.dataFim);
+    const body = {
+      data_inicio: this.dataInicio,
+      data_fim: this.dataFim,
 
-    this.http.get<any[]>(
-      `http://localhost:8000/api/origin-summary/${this.importId}`,
-      { params }
+      categorias: [
+        'ESTORNO',
+        'Receitas de Serviços',
+        'REPASSES A PARCEIROS'
+      ],
+
+      situacoes: [
+        'Conciliado'
+      ]
+    };
+
+    this.http.post<OriginSummary[]>(
+      `http://127.0.0.1:8000/api/financial/summary/insurance/origin/${this.importId}`,
+      body
     )
     .subscribe({
 

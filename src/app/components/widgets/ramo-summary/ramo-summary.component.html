@@ -1,10 +1,17 @@
 <div class="widget-card">
 
   <div class="widget-header">
+
     <div>
+
       <h2>Resumo por Ramo</h2>
-      <p>Performance financeira por ramo</p>
+
+      <p>
+        Consolidado financeiro por ramo
+      </p>
+
     </div>
+
   </div>
 
   <div
@@ -31,18 +38,43 @@
       <div class="ramo-metrics">
 
         <div class="metric positive">
-          <span>Recebimentos</span>
-          <strong>{{ toCurrency(item.recebimentos) }}</strong>
+
+          <span>Receb.</span>
+
+          <strong>
+            {{ toCurrency(item.recebimentos) }}
+          </strong>
+
         </div>
 
         <div class="metric negative">
-          <span>Pagamentos</span>
-          <strong>{{ toCurrency(item.pagamentos) }}</strong>
+
+          <span>Pag.</span>
+
+          <strong>
+            {{ toCurrency(item.pagamentos) }}
+          </strong>
+
         </div>
 
         <div class="metric liquido">
+
           <span>Líquido</span>
-          <strong>{{ toCurrency(item.liquido) }}</strong>
+
+          <strong>
+            {{ toCurrency(item.liquido) }}
+          </strong>
+
+        </div>
+
+        <div class="metric registros">
+
+          <span>Registros</span>
+
+          <strong>
+            {{ item.total_registros }}
+          </strong>
+
         </div>
 
       </div>
