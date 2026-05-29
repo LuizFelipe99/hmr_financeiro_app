@@ -7,6 +7,10 @@
 
 .widget-header {
   margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .widget-header h2 {
@@ -22,9 +26,25 @@
   font-size: 14px;
 }
 
+.header-total {
+  text-align: right;
+}
+
+.header-total span {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.header-total strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
 .producers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 
@@ -47,6 +67,7 @@
   font-size: 16px;
   font-weight: 700;
   color: #0f172a;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -62,6 +83,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .metric span {
@@ -69,11 +91,13 @@
   text-transform: uppercase;
   letter-spacing: .4px;
   color: #64748b;
+  white-space: nowrap;
 }
 
 .metric strong {
   font-size: 15px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .positive strong {
@@ -92,4 +116,27 @@
   padding: 28px 0;
   text-align: center;
   color: #64748b;
+}
+
+/* Responsividade */
+
+@media (max-width: 1200px) {
+  .producers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .producers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widget-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-total {
+    text-align: left;
+  }
 }
